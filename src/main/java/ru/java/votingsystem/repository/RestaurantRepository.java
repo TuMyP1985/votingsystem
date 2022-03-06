@@ -1,19 +1,19 @@
 package ru.java.votingsystem.repository;
 
-import org.springframework.stereotype.Repository;
+import ru.java.votingsystem.model.Restaurant;
 import ru.java.votingsystem.model.User;
 
 import java.util.List;
 
-public interface UserRepository {
+public interface RestaurantRepository {
     // null if not found, when updated
-    User save(User user);
+    Restaurant save(Restaurant restaurant);
 
     // false if not found
     boolean delete(int id);
 
     // null if not found
-    User get(int id);
+    Restaurant get(int id);
 
-    List<User> getAll();
+    List<Restaurant> getAll();
 }

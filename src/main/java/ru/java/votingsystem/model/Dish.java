@@ -6,10 +6,16 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-
+@NamedQueries({
+        @NamedQuery(name = Dish.DELETE, query = "DELETE FROM Dish u WHERE u.id=:id"),
+        @NamedQuery(name = Dish.ALL_SORTED, query = "SELECT u FROM Dish u ORDER BY u.id"),
+})
 @Entity
 @Table(name = "dishes")
 public class Dish extends AbstractNamedEntity{
+
+    public static final String DELETE = "Dish.delete";
+    public static final String ALL_SORTED = "Dish.getAllSorted";
 
     @Column(name = "price", nullable = false)
     @Range(min = 1)

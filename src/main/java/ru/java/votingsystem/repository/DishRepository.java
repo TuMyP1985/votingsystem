@@ -1,19 +1,19 @@
 package ru.java.votingsystem.repository;
 
-import org.springframework.stereotype.Repository;
+import ru.java.votingsystem.model.Dish;
 import ru.java.votingsystem.model.User;
 
 import java.util.List;
 
-public interface UserRepository {
+public interface DishRepository {
     // null if not found, when updated
-    User save(User user);
+    Dish save(Dish dish);
 
     // false if not found
     boolean delete(int id);
 
     // null if not found
-    User get(int id);
+    Dish get(int id);
 
-    List<User> getAll();
+    List<Dish> getAll();
 }

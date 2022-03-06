@@ -4,9 +4,16 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
+@NamedQueries({
+        @NamedQuery(name = Vote.DELETE, query = "DELETE FROM Vote u WHERE u.id=:id"),
+        @NamedQuery(name = Vote.ALL_SORTED, query = "SELECT u FROM Vote u ORDER BY u.id"),
+})
 @Entity
 @Table(name = "votes")
 public class Vote extends AbstractBaseEntity{
+
+    public static final String DELETE = "Vote.delete";
+    public static final String ALL_SORTED = "Vote.getAllSorted";
 
     @Column(name = "registered", nullable = false, columnDefinition = "timestamp default now()", updatable = false)
     @NotNull
