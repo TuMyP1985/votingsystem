@@ -16,10 +16,14 @@ public class Restaurant extends AbstractNamedEntity {
     public static final String DELETE = "Restaurant.delete";
     public static final String ALL_SORTED = "Restaurant.getAllSorted";
 
+    public Restaurant() {}
+
+    public Restaurant(String name) {
+        this(null, name);
+    }
+
     public Restaurant(Integer id, String name) {
         super(id, name);
-    }
-    public Restaurant() {
     }
 
     @Override
