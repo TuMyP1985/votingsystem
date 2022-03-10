@@ -1,11 +1,9 @@
-package ru.java.votingsystem.repository.jpa;
+package ru.java.votingsystem.repository.datajpa;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.java.votingsystem.model.Dish;
-import ru.java.votingsystem.model.Vote;
 import ru.java.votingsystem.repository.DishRepository;
-import ru.java.votingsystem.repository.VoteRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,7 +11,7 @@ import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
-public class JpaVoteRepository implements VoteRepository {
+public class JpaDishRepository implements DishRepository {
 
 
     @PersistenceContext
@@ -21,32 +19,32 @@ public class JpaVoteRepository implements VoteRepository {
 
     @Override
     @Transactional
-    public Vote save(Vote vote) {
-        if (vote.isNew()) {
-            em.persist(vote);
-            return vote;
+    public Dish save(Dish dish) {
+        if (dish.isNew()) {
+            em.persist(dish);
+            return dish;
         } else {
-            return em.merge(vote);
+            return em.merge(dish);
         }
     }
 
     @Override
-    public Vote get(int id) {
-        return em.find(Vote.class, id);
+    public Dish get(int id) {
+        return em.find(Dish.class, id);
     }
 
     @Override
     @Transactional
     public boolean delete(int id) {
 
-        return em.createNamedQuery(Vote.DELETE)
+        return em.createNamedQuery(Dish.DELETE)
                 .setParameter("id", id)
                 .executeUpdate() != 0;
     }
 
 
     @Override
-    public List<Vote> getAll() {
-        return em.createNamedQuery(Vote.ALL_SORTED, Vote.class).getResultList();
+    public List<Dish> getAll() {
+        return em.createNamedQuery(Dish.ALL_SORTED, Dish.class).getResultList();
     }
 }
