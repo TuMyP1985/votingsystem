@@ -11,7 +11,7 @@ import java.util.Date;
         @NamedQuery(name = Dish.ALL_SORTED, query = "SELECT u FROM Dish u ORDER BY u.id"),
 })
 @Entity
-@Table(name = "dishes")
+@Table(name = "dishs")
 public class Dish extends AbstractNamedEntity{
 
     public static final String DELETE = "Dish.delete";

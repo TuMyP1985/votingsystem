@@ -1,14 +1,9 @@
-DROP TABLE IF EXISTS user_restaurant_votes;
-DROP TABLE IF EXISTS restaurant_dishs;
+DROP TABLE IF EXISTS votes;
+DROP TABLE IF EXISTS dishs;
 DROP TABLE IF EXISTS restaurants;
 DROP TABLE IF EXISTS user_roles;
 DROP TABLE IF EXISTS users;
 
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS user_roles;
-DROP TABLE IF EXISTS restaurants;
-DROP TABLE IF EXISTS restaurant_dishs;
-DROP TABLE IF EXISTS user_restaurant_votes;
 
 DROP SEQUENCE IF EXISTS global_seq;
 
@@ -37,23 +32,23 @@ CREATE TABLE restaurants
     name             VARCHAR                           NOT NULL
 );
 
-CREATE TABLE restaurant_dishs
+CREATE TABLE dishs
 (
     id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     name          VARCHAR                           NOT NULL,
     registered    TIMESTAMP           DEFAULT now() NOT NULL,
     price         INT                               NOT NULL,
-    id_restaurant INTEGER                           NOT NULL,
-    FOREIGN KEY (id_restaurant) REFERENCES restaurants (id) ON DELETE CASCADE
+    restaurant_id INTEGER                           NOT NULL,
+    FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
 );
 
-CREATE TABLE user_restaurant_votes
+CREATE TABLE votes
 (
     id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     registered    TIMESTAMP           DEFAULT now() NOT NULL,
-    id_user       INTEGER                           NOT NULL,
-    id_restaurant INTEGER                           NOT NULL,
-    FOREIGN KEY (id_user) REFERENCES users (id) ON DELETE CASCADE,
-    FOREIGN KEY (id_restaurant) REFERENCES restaurants (id) ON DELETE CASCADE
+    user_id       INTEGER                           NOT NULL,
+    restaurant_id INTEGER                           NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+    FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
 
 );

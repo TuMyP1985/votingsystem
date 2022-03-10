@@ -1,5 +1,5 @@
-DELETE FROM user_restaurant_votes;
-DELETE FROM restaurant_dishs;
+DELETE FROM votes;
+DELETE FROM dishs;
 DELETE FROM restaurants;
 DELETE FROM user_roles;
 DELETE FROM users;
@@ -20,7 +20,7 @@ VALUES ('Avrora'),
        ('Balalayka'),
        ('Rostov');
 
-INSERT INTO restaurant_dishs (name,registered, price, id_restaurant)
+INSERT INTO dishs (name,registered, price, restaurant_id)
 VALUES ('Овсянка Avrora',       '2022-03-10 10:00:00',  500,    100003),
        ('капуста Avrora',       '2022-03-11 10:00:00',  1000,   100003),
        ('Пироги Balalayka',     '2022-03-10 10:00:00',  500,    100004),
@@ -29,7 +29,7 @@ VALUES ('Овсянка Avrora',       '2022-03-10 10:00:00',  500,    100003),
        ('Красная рыба Rostov',  '2022-03-11 10:00:00',  1000,   100005),
        ('Мясо Rostov',          '2022-03-12 10:00:00',  510,    100005);
 
-INSERT INTO user_restaurant_votes (registered, id_user, id_restaurant)
+INSERT INTO votes (registered, user_id, restaurant_id)
 VALUES ('2022-03-10 10:00:00',  100000,   100003),
        ('2022-03-11 10:00:00',  100000,   100003),
        ('2022-03-12 10:00:00',  100000,   100004),

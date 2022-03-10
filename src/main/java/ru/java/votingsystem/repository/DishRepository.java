@@ -1,7 +1,6 @@
 package ru.java.votingsystem.repository;
 
 import ru.java.votingsystem.model.Dish;
-import ru.java.votingsystem.model.User;
 
 import java.util.List;
 

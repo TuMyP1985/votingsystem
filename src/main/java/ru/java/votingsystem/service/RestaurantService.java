@@ -3,9 +3,7 @@ package ru.java.votingsystem.service;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.java.votingsystem.model.Restaurant;
-import ru.java.votingsystem.model.User;
 import ru.java.votingsystem.repository.RestaurantRepository;
-import ru.java.votingsystem.repository.UserRepository;
 
 import java.util.List;
 
