@@ -1,22 +1,19 @@
-package ru.java.votingsystem.repository.datajpa;
+package ru.java.votingsystem.repository.vote;
 
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ru.java.votingsystem.model.Restaurant;
-
-import java.time.LocalDateTime;
-import java.util.List;
+import ru.java.votingsystem.model.Vote;
 
 @Transactional(readOnly = true)
-public interface CrudRestaurantRepository extends JpaRepository<Restaurant, Integer> {
+public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
 
     @Transactional
     @Modifying
-    @Query("DELETE FROM User u WHERE u.id=:id")
+    @Query("DELETE FROM Vote u WHERE u.id=:id")
     int delete(@Param("id") int id);
 
 }

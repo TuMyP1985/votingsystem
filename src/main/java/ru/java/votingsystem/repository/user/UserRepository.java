@@ -1,4 +1,4 @@
-package ru.java.votingsystem.repository;
+package ru.java.votingsystem.repository.user;
 
 import ru.java.votingsystem.model.User;
 

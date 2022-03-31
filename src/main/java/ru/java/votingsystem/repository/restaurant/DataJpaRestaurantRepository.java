@@ -1,8 +1,7 @@
-package ru.java.votingsystem.repository.datajpa;
+package ru.java.votingsystem.repository.restaurant;
 
 import org.springframework.stereotype.Repository;
 import ru.java.votingsystem.model.Restaurant;
-import ru.java.votingsystem.repository.RestaurantRepository;
 
 import java.util.List;
 
