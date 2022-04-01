@@ -19,7 +19,7 @@ public class RestaurantService {
     }
 
     public Restaurant create(Restaurant restaurant) {
-        Assert.notNull(restaurant, "user must not be null");
+        Assert.notNull(restaurant, "restaurant restaurant not be null");
         return repository.save(restaurant);
     }
 
@@ -36,7 +36,7 @@ public class RestaurantService {
     }
 
     public void update(Restaurant restaurant) {
-        Assert.notNull(restaurant, "user must not be null");
+        Assert.notNull(restaurant, "restaurant must not be null");
         checkNotFoundWithId(repository.save(restaurant), restaurant.id());
     }
 }

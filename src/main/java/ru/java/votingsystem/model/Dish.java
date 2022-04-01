@@ -25,12 +25,17 @@ public class Dish extends AbstractNamedEntity{
     @NotNull
     private Date registered = new Date();
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id", nullable = false)
     @NotNull
     private Restaurant restaurant;
 
     public Dish() {
+    }
+
+   public Dish(Integer id, String name, int price, Restaurant restaurant) {
+        super(id, name);
+        this.price = price;
     }
 
     public Dish(Integer id, String name, int price, Date registered, Restaurant restaurant) {

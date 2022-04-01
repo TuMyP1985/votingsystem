@@ -15,7 +15,6 @@
         <thead>
         <tr>
             <th><spring:message code="user.name"/></th>
-            <th><spring:message code="user.email"/></th>
             <th><spring:message code="user.roles"/></th>
             <th><spring:message code="user.active"/></th>
             <th><spring:message code="user.registered"/></th>
@@ -25,7 +24,6 @@
             <jsp:useBean id="user" type="ru.java.votingsystem.model.User"/>
             <tr>
                 <td><c:out value="${user.name}"/></td>
-                <td><a href="mailto:${user.email}">${user.email}</a></td>
                 <td>${user.roles}</td>
                 <td>${user.enabled}</td>
                 <td><fmt:formatDate value="${user.registered}" pattern="dd-MM-yyyy"/></td>

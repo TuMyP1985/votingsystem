@@ -35,7 +35,7 @@ public class DataJpaDishRepository implements DishRepository {
     }
 
     @Override
-    public List<Dish> getAll() {
-        return crudRepository.findAll();
+    public List<Dish> getAll(int restaurantId) {
+        return crudRepository.getAll(restaurantId);
     }
 }

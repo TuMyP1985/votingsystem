@@ -40,14 +40,14 @@ public class RootController {
         int userId = Integer.parseInt(request.getParameter("userId"));
         log.info("setUser {}", userId);
         SecurityUtil.setAuthUserId(userId);
-        return "redirect:meals";
+        return "redirect:restaurants";
     }
 
-    @GetMapping("/restaurant")
-    public String getMeals(Model model) {
-        log.info("meals");
-//        model.addAttribute("meals",
-//                MealsUtil.getTos(mealService.getAll(SecurityUtil.authUserId()), SecurityUtil.authUserCaloriesPerDay()));
-        return "restaurant";
+    @GetMapping("/restaurants")
+    public String getRestaurant(Model model) {
+        log.info("restaurants");
+        model.addAttribute("restaurants",
+                restaurantService.getAll());
+        return "restaurants";
     }
 }

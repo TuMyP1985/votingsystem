@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.java.votingsystem.model.Dish;
 import ru.java.votingsystem.model.Restaurant;
 
+import java.util.List;
+
 @Transactional(readOnly = true)
 public interface CrudDishRepository extends JpaRepository<Dish, Integer> {
 
@@ -15,5 +17,8 @@ public interface CrudDishRepository extends JpaRepository<Dish, Integer> {
     @Modifying
     @Query("DELETE FROM Dish u WHERE u.id=:id")
     int delete(@Param("id") int id);
+
+    @Query("SELECT m FROM Dish m WHERE m.restaurant.id=:restaurantId ORDER BY m.name")
+    List<Dish> getAll(@Param("restaurantId") int restaurantId);
 
 }

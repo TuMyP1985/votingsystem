@@ -1,26 +1,27 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <html>
-<head>
-    <title>Restaurant</title>
-    <link rel="stylesheet" href="../../css/style.css">
-</head>
+<jsp:include page="fragments/headTag.jsp"/>
 <body>
-<section>
+<jsp:include page="fragments/bodyHeader.jsp"/>
 
-    <hr>
-    <h2>${param.action == 'create' ? 'Create restaurant' : 'Edit restaurant'}</h2>
+<section>
     <jsp:useBean id="restaurant" type="ru.java.votingsystem.model.Restaurant" scope="request"/>
+    <%--    `restaurant.new` cause javax.el.ELException - bug tomcat --%>
+    <h3><spring:message code="${restaurant.isNew() ? 'restaurant.add' : 'restaurant.edit'}"/></h3>
+    <hr>
     <form method="post" action="restaurants">
         <input type="hidden" name="id" value="${restaurant.id}">
         <dl>
-            <dt>Name:</dt>
-            <dd><input type="text" value="${restaurant.name}" size=40 name="name" required></dd>
+            <dt><spring:message code="restaurant.name"/>:</dt>
+            <dd><input type="text" value="${restaurant.name}" name="name" required></dd>
         </dl>
-        <button type="submit">Save</button>
-        <button onclick="window.history.back()" type="button">Cancel</button>
+        <button type="submit"><spring:message code="common.save"/></button>
+        <button onclick="window.history.back()" type="button"><spring:message code="common.cancel"/></button>
     </form>
 </section>
+<jsp:include page="fragments/footer.jsp"/>
 </body>
 </html>
