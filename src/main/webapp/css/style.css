@@ -14,4 +14,11 @@ dd {
     margin-left: 8px;
     vertical-align: top;
 }
+tr[data-meal-excess="false"] {
+    color: indianred;
+}
+
+tr[data-meal-excess="true"] {
+    color: lightgrey;
+}
 

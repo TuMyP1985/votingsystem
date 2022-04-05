@@ -8,6 +8,8 @@ import ru.java.votingsystem.repository.restaurant.CrudRestaurantRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Repository
@@ -35,7 +37,8 @@ public class DataJpaDishRepository implements DishRepository {
     }
 
     @Override
-    public List<Dish> getAll(int restaurantId) {
-        return crudRepository.getAll(restaurantId);
+    public List<Dish> getAllToday(int restaurantId) {
+        LocalDate today = LocalDate.now();
+        return crudRepository.getAllToday(restaurantId, today.atStartOfDay(), today.plus(1, ChronoUnit.DAYS).atStartOfDay());
     }
 }

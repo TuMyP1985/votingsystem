@@ -18,10 +18,8 @@
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
         <tr>
-<%--            <th><spring:message code="restaurant.name"/></th>--%>
             <th><spring:message code="dish.name"/></th>
             <th><spring:message code="dish.price"/></th>
-            <th><spring:message code="dish.registered"/></th>
             <th></th>
             <th></th>
         </tr>
@@ -29,10 +27,8 @@
         <c:forEach items="${requestScope.dishes}" var="dish">
             <jsp:useBean id="dish" type="ru.java.votingsystem.model.Dish"/>
             <tr>
-<%--                <td>${dish.restaurant.name}</td>--%>
                 <td><c:out value="${dish.name}"/></td>
                 <td>${dish.price}</td>
-                <td><fmt:formatDate value="${dish.registered}" pattern="dd-MM-yyyy"/></td>
                 <td><a href="restaurants/dishes/update?id=${dish.id}"><spring:message code="common.update"/></a></td>
                 <td><a href="restaurants/dishes/delete?id=${dish.id}"><spring:message code="common.delete"/></a></td>
             </tr>

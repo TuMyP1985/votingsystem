@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.java.votingsystem.model.Restaurant;
 import ru.java.votingsystem.model.Vote;
 
+import java.time.LocalDateTime;
+
 @Transactional(readOnly = true)
 public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
 
@@ -15,5 +17,8 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
     @Modifying
     @Query("DELETE FROM Vote u WHERE u.id=:id")
     int delete(@Param("id") int id);
+
+    @Query("SELECT m FROM Vote m WHERE m.user.id = :userId and m.registered >= :startDate And m.registered < :endDate")
+    Vote getWithUser(@Param("userId") int userId, @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
 }

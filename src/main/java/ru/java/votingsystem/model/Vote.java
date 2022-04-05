@@ -2,6 +2,7 @@ package ru.java.votingsystem.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @NamedQueries({
@@ -17,14 +18,14 @@ public class Vote extends AbstractBaseEntity{
 
     @Column(name = "registered", nullable = false, columnDefinition = "timestamp default now()", updatable = false)
     @NotNull
-    private Date registered = new Date();
+    private LocalDateTime registered = LocalDateTime.now();
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id", nullable = false)
     @NotNull
     private Restaurant restaurant;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     @NotNull
     private User user;
@@ -32,18 +33,22 @@ public class Vote extends AbstractBaseEntity{
     public Vote() {
     }
 
-    public Vote(Integer id, Date registered, Restaurant restaurant, User user) {
+    public Vote(Restaurant restaurant) {
+        super(null);
+        this.restaurant = restaurant;
+    }
+
+    public Vote(Integer id, Restaurant restaurant, User user) {
         super(id);
-        this.registered = registered;
         this.restaurant = restaurant;
         this.user = user;
     }
 
-    public Date getRegistered() {
+    public LocalDateTime getRegistered() {
         return registered;
     }
 
-    public void setRegistered(Date registered) {
+    public void setRegistered(LocalDateTime registered) {
         this.registered = registered;
     }
 

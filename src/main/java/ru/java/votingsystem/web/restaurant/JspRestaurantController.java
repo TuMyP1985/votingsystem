@@ -9,10 +9,6 @@ import ru.java.votingsystem.model.Dish;
 import ru.java.votingsystem.model.Restaurant;
 
 import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,6 +22,14 @@ public class JspRestaurantController extends AbstractRestaurantController {
         return "redirect:/restaurants";
     }
 
+    @GetMapping("/voteSelect")
+    public String voteSelect(HttpServletRequest request) {
+
+        super.voteSelect(getAnyId(request, "idRestaurant"),
+                getAnyId(request, "idVote"));
+        return "redirect:/restaurants";
+    }
+
     @GetMapping("/update")
     public String update(HttpServletRequest request, Model model) {
         model.addAttribute("restaurant", super.get(getId(request)));
@@ -33,25 +37,30 @@ public class JspRestaurantController extends AbstractRestaurantController {
     }
     @GetMapping("/dishes")
     public String dishes(HttpServletRequest request, Model model) {
-        int i = getId(request);
-        List<Dish> dishes = super.getDishes(i);
-        model.addAttribute("dishes", dishes);
-        Restaurant restaurant = null;
-        if (dishes.size()>0)
-            restaurant = dishes.get(0).getRestaurant();
-        else
-            restaurant = super.get(i);
-        model.addAttribute("restaurant", restaurant);
+        int idRestaurant = getId(request);
+        setModelDishesRestaurant(model, null, idRestaurant);
         return "dishes";
+    }
+
+
+    public void setModelDishesRestaurant(Model model, Restaurant restaurant, int idRestaurant){
+        List<Dish> dishes = super.getAllToday(idRestaurant);
+        model.addAttribute("dishes", dishes);
+        if (restaurant == null)
+            if (dishes.size() > 0)
+                restaurant = dishes.get(0).getRestaurant();
+            else
+                restaurant = super.get(idRestaurant);
+        model.addAttribute("restaurant", restaurant);
     }
 
     @PostMapping("/dishesUpdateOrCreate")
     public String updateOrCreateDishes(HttpServletRequest request, Model model) {
-        int idRestaurant = Integer.parseInt(request.getParameter("idRestaurant"));
+        int idRestaurant = getAnyId(request, "idRestaurant");
         Restaurant restaurant = super.get(idRestaurant);
         Dish dish = new Dish(null,
                 request.getParameter("name"),
-                Integer.parseInt(request.getParameter("price")),
+                getAnyId(request, "price"),
                 restaurant);
         dish.setRestaurant(restaurant);
         if (request.getParameter("id").isEmpty()) {
@@ -59,10 +68,7 @@ public class JspRestaurantController extends AbstractRestaurantController {
         } else {
             super.updateDish(dish, getId(request));
         }
-//        return "redirect:/restaurants/dishes";
-
-        model.addAttribute("dishes", super.getDishes(idRestaurant));
-        model.addAttribute("restaurant", restaurant);
+        setModelDishesRestaurant(model, restaurant, idRestaurant);
         return "dishes";
     }
 
@@ -82,13 +88,12 @@ public class JspRestaurantController extends AbstractRestaurantController {
 
     @GetMapping("/dishes/delete")
     public String dishesDelete(HttpServletRequest request, Model model) {
-        int idRestaurant = super.getDish(getId(request)).getRestaurant().getId();//bad -  2 request in DB
-        super.deleteDishes(getId(request));
-        //return "redirect:/restaurants/dishes";
+        int idDish = getId(request);
+        int idRestaurant = super.getDish(idDish).getRestaurant().getId();//bad -  2 request in DB
+        super.deleteDishes(idDish);
 
-        Restaurant restaurant = super.get(idRestaurant);
-        model.addAttribute("dishes", super.getDishes(idRestaurant));
-        model.addAttribute("restaurant", restaurant);
+        setModelDishesRestaurant(model, null, idRestaurant);
+
         return "dishes";
     }
 
@@ -110,8 +115,11 @@ public class JspRestaurantController extends AbstractRestaurantController {
         return "redirect:/restaurants";
     }
 
-       private int getId(HttpServletRequest request) {
-        String paramId = Objects.requireNonNull(request.getParameter("id"));
+    private int getId(HttpServletRequest request) {
+        return getAnyId(request,"id");
+    }
+       private int getAnyId(HttpServletRequest request, String nameId) {
+        String paramId = Objects.requireNonNull(request.getParameter(nameId));
         return Integer.parseInt(paramId);
     }
 }

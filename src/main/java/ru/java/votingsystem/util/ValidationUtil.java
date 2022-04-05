@@ -4,7 +4,10 @@ package ru.java.votingsystem.util;
 import ru.java.votingsystem.model.AbstractBaseEntity;
 import ru.java.votingsystem.util.exception.NotFoundException;
 
+import java.time.LocalTime;
+
 public class ValidationUtil {
+    private final static int HOUR_BEFORE_INPUT_VOTE=11;
     private ValidationUtil() {
     }
 
@@ -41,5 +44,10 @@ public class ValidationUtil {
         } else if (entity.id() != id) {
             throw new IllegalArgumentException(entity + " must be with id=" + id);
         }
+    }
+
+    public static boolean canInputVote(){
+        return (LocalTime.now().getHour()<HOUR_BEFORE_INPUT_VOTE ||
+                LocalTime.now().getMinute()==0 && LocalTime.now().getHour()==HOUR_BEFORE_INPUT_VOTE);
     }
 }

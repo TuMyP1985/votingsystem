@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @NamedQueries({
@@ -23,7 +24,7 @@ public class Dish extends AbstractNamedEntity{
 
     @Column(name = "registered", nullable = false, columnDefinition = "timestamp default now()", updatable = false)
     @NotNull
-    private Date registered = new Date();
+    private LocalDateTime registered = LocalDateTime.now();
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id", nullable = false)
@@ -33,15 +34,9 @@ public class Dish extends AbstractNamedEntity{
     public Dish() {
     }
 
-   public Dish(Integer id, String name, int price, Restaurant restaurant) {
+    public Dish(Integer id, String name, int price, Restaurant restaurant) {
         super(id, name);
         this.price = price;
-    }
-
-    public Dish(Integer id, String name, int price, Date registered, Restaurant restaurant) {
-        super(id, name);
-        this.price = price;
-        this.registered = registered;
         this.restaurant = restaurant;
     }
 
@@ -53,11 +48,11 @@ public class Dish extends AbstractNamedEntity{
         this.price = price;
     }
 
-    public Date getRegistered() {
+    public LocalDateTime getRegistered() {
         return registered;
     }
 
-    public void setRegistered(Date registered) {
+    public void setRegistered(LocalDateTime registered) {
         this.registered = registered;
     }
 

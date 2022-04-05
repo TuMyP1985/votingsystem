@@ -7,10 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import ru.java.votingsystem.model.Restaurant;
+import ru.java.votingsystem.model.User;
+import ru.java.votingsystem.model.Vote;
 import ru.java.votingsystem.service.RestaurantService;
 import ru.java.votingsystem.service.UserService;
+import ru.java.votingsystem.service.VoteService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+
+import static ru.java.votingsystem.util.ValidationUtil.canInputVote;
 
 @Controller
 public class RootController {
@@ -21,6 +28,9 @@ public class RootController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private VoteService voteService;
 
     @GetMapping("/")
     public String root() {
@@ -46,8 +56,12 @@ public class RootController {
     @GetMapping("/restaurants")
     public String getRestaurant(Model model) {
         log.info("restaurants");
+        int userId = SecurityUtil.authUserId();
+        model.addAttribute("canInputVote",canInputVote());
         model.addAttribute("restaurants",
                 restaurantService.getAll());
+        Vote vote = voteService.getWithUser(userId);
+        model.addAttribute("vote",vote);
         return "restaurants";
     }
 }

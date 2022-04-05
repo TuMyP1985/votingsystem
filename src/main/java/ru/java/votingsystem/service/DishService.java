@@ -33,8 +33,8 @@ public class DishService {
         return checkNotFoundWithId(repository.get(id), id);
     }
 
-    public List<Dish> getAll(int id) {
-        return repository.getAll(id);
+    public List<Dish> getAllToday(int id) {
+        return repository.getAllToday(id);
     }
 
     public void update(Dish dish) {
