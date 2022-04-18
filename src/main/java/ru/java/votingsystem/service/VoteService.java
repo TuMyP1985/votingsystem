@@ -17,18 +17,26 @@ public class VoteService {
 
     private final VoteRepository repository;
 
+    public boolean delete(int id){
+        return repository.delete(id);
+    }
+
+    public Vote get(int id, int userId){
+        return repository.get(id, userId);
+    }
+
     public VoteService(VoteRepository repository) {
         this.repository = repository;
     }
 
     public void selectRestaurant(Vote vote, int idVoteOld, int userId) {
-        checkNotFoundWithId(repository.delete(idVoteOld), idVoteOld);
+        if (idVoteOld!=0)
+            checkNotFoundWithId(repository.delete(idVoteOld), idVoteOld);
         repository.save(vote, userId);
     }
 
     public Vote getWithUser(int userId){
-        //return repository.getWithUser(userId);
-        return checkNotFoundWithId(repository.getWithUser(userId), userId);
+        return repository.getWithUser(userId);
     }
 
 

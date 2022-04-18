@@ -46,7 +46,7 @@ public abstract class AbstractRestaurantController {
     }
 
     public void voteSelect(int idRestaurant, int idVoteOld) {
-        if (!canInputVote()){
+        if (idVoteOld!=0 && !canInputVote()){
             return;
         }
         int userId = SecurityUtil.authUserId();

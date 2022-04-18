@@ -50,8 +50,7 @@ public class User extends AbstractNamedEntity {
     public User(Integer id, String name, String password, Role... roles) {
         this(id, name, password, true, new Date(), Arrays.asList((roles)));
     }
-
-    public User(Integer id, String name, String password, boolean enabled, Date registered, Collection<Role> roles) {
+   public User(Integer id, String name, String password, boolean enabled, Date registered, Collection<Role> roles) {
         super(id, name);
         this.password = password;
         this.enabled = enabled;

@@ -24,9 +24,13 @@ public class JspRestaurantController extends AbstractRestaurantController {
 
     @GetMapping("/voteSelect")
     public String voteSelect(HttpServletRequest request) {
+        //Vote can be empty
+        int idVote = 0;
+        if (!request.getParameter("idVote").isEmpty())
+            idVote = getAnyId(request, "idVote");
 
         super.voteSelect(getAnyId(request, "idRestaurant"),
-                getAnyId(request, "idVote"));
+                idVote);
         return "redirect:/restaurants";
     }
 

@@ -61,6 +61,7 @@ public class RootController {
         model.addAttribute("restaurants",
                 restaurantService.getAll());
         Vote vote = voteService.getWithUser(userId);
+        vote = vote==null?new Vote():vote;
         model.addAttribute("vote",vote);
         return "restaurants";
     }

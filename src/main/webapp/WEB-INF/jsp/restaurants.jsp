@@ -22,10 +22,10 @@
 
     <hr/>
 <%--    ${canInputVote ? 'indianred' : ''}--%>
-
+    <jsp:useBean id="vote" type="ru.java.votingsystem.model.Vote" scope="request"/>
     <jsp:useBean id="canInputVote" type="java.lang.Boolean" scope="request"/>
     <h2><spring:message code="restaurant.title"/>
-        <spring:message code= "${!canInputVote ? 'common.cannotadd' : 'common.empty'}"/>
+        <spring:message code= "${!canInputVote && vote.id!=null ? 'common.cannotadd' : 'common.empty'}"/>
 
     </h2>
     <hr/>
@@ -41,7 +41,6 @@
             <th></th>
         </tr>
         </thead>
-        <jsp:useBean id="vote" type="ru.java.votingsystem.model.Vote" scope="request"/>
         <c:forEach items="${requestScope.restaurants}" var="restaurant">
             <jsp:useBean id="restaurant" type="ru.java.votingsystem.model.Restaurant"/>
 <%--            <tr class="${restaurant.id == vote.id ? 'color: red' : 'color: green'}">--%>

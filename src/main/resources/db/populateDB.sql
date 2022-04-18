@@ -6,9 +6,9 @@ DELETE FROM users;
 ALTER SEQUENCE global_seq RESTART WITH 100000;
 
 INSERT INTO users (name, password)
-VALUES ('User1', 'password'),
-       ('User2', 'admin'),
-       ('Admin', 'guest');
+VALUES ('User1', 'password1'),
+       ('User2', 'password2'),
+       ('Admin', 'passwordA');
 
 INSERT INTO user_roles (role, user_id)
 VALUES ('USER', 100000),
@@ -31,7 +31,7 @@ VALUES ('Овсянка Avrora',       '2022-03-10 10:00:00',  500,    100003),
 
 INSERT INTO votes (registered, user_id, restaurant_id)
 VALUES ('2022-04-04 10:00:00',  100000,   100003),
-       ('2022-04-05 10:00:00',  100000,   100003),
+       ('2022-04-06 10:00:00',  100000,   100003),
        ('2022-03-12 10:00:00',  100000,   100004),
        ('2022-03-10 10:00:00',  100001,   100003),
        ('2022-03-11 10:00:00',  100001,   100003),
