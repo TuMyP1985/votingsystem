@@ -1,3 +1,4 @@
+-- <!-- POSTGRES how to add bean It's is only for me, not for Diplom. For experience-->
 DROP TABLE IF EXISTS votes;
 DROP TABLE IF EXISTS dishs;
 DROP TABLE IF EXISTS restaurants;
