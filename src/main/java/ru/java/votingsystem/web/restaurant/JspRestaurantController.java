@@ -16,11 +16,6 @@ import java.util.Objects;
 @RequestMapping("/restaurants")
 public class JspRestaurantController extends AbstractRestaurantController {
 
-    @GetMapping("/delete")
-    public String delete(HttpServletRequest request) {
-        super.delete(getId(request));
-        return "redirect:/restaurants";
-    }
 
     @GetMapping("/voteSelect")
     public String voteSelect(HttpServletRequest request) {
@@ -34,11 +29,8 @@ public class JspRestaurantController extends AbstractRestaurantController {
         return "redirect:/restaurants";
     }
 
-    @GetMapping("/update")
-    public String update(HttpServletRequest request, Model model) {
-        model.addAttribute("restaurant", super.get(getId(request)));
-        return "restaurantForm";
-    }
+
+
     @GetMapping("/dishes")
     public String dishes(HttpServletRequest request, Model model) {
         int idRestaurant = getId(request);
@@ -76,19 +68,6 @@ public class JspRestaurantController extends AbstractRestaurantController {
         return "dishes";
     }
 
-    @GetMapping("/dishes/update")
-    public String dishesUpdate(HttpServletRequest request, Model model) {
-        model.addAttribute("dish", super.getDish(getId(request)));
-        return "dishForm";
-    }
-
-    @GetMapping("/dishes/create")
-    public String dishesCreate(HttpServletRequest request, Model model) {
-        Dish dish = new Dish();
-        dish.setRestaurant(super.get(getId(request)));
-        model.addAttribute("dish", dish);
-        return "dishForm";
-    }
 
     @GetMapping("/dishes/delete")
     public String dishesDelete(HttpServletRequest request, Model model) {
@@ -101,11 +80,7 @@ public class JspRestaurantController extends AbstractRestaurantController {
         return "dishes";
     }
 
-    @GetMapping("/create")
-    public String create(Model model) {
-        model.addAttribute("restaurant", new Restaurant(""));
-        return "restaurantForm";
-    }
+
 
     @PostMapping
     public String updateOrCreate(HttpServletRequest request) {

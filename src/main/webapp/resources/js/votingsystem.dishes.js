@@ -5,7 +5,6 @@ const ctx = {
     ajaxUrl: dishAjaxUrl,
     updateTable: function () {
         location.reload();
-        // window.location = "dish"; //переход вместо обновления опять формируем (переходим) на страницу dish
     }
 };
 

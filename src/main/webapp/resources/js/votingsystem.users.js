@@ -5,7 +5,7 @@ const ctx = {
     ajaxUrl: userAjaxUrl,
     updateTable: function () {
         $.get(userAjaxUrl, updateTableByData);
-        // window.location = "users"; //переход вместо обновления опять формируем (переходим) на страницу users
+        location.reload();
     }
 };
 
