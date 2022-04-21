@@ -6,8 +6,8 @@
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
-<script src="resources/js/topjava.common.js" defer></script>
-<script src="resources/js/topjava.users.js" defer></script>
+<script src="resources/js/votingsystem.common.js" defer></script>
+<script src="resources/js/votingsystem.users.js" defer></script>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
 <div class="jumbotron pt-4">
@@ -35,8 +35,8 @@
                     <td>${user.roles}</td>
                     <td><input type="checkbox" <c:if test="${user.enabled}">checked</c:if>/></td>
                     <td><fmt:formatDate value="${user.registered}" pattern="dd-MMMM-yyyy"/></td>
-                    <td><a><span class="fa fa-pencil"></span></a></td>
-                    <td><a class="delete"><span class="fa fa-remove"></span></a></td>
+                    <td><a onclick=updateRow(${user.id})><span class="fa fa-pencil"></span></a></td>
+                    <td><a onclick="deleteRow(${user.id})"><span class="fa fa-remove"></span></a></td>
                 </tr>
             </c:forEach>
         </table>

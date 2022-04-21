@@ -1,9 +1,13 @@
 package ru.java.votingsystem.service;
 
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.java.votingsystem.model.User;
 import ru.java.votingsystem.repository.user.UserRepository;
+import ru.java.votingsystem.to.UserTo;
+import ru.java.votingsystem.util.UserUtil;
 
 import java.util.List;
 
@@ -38,5 +42,13 @@ public class UserService {
     public void update(User user) {
         Assert.notNull(user, "user must not be null");
         checkNotFoundWithId(repository.save(user), user.id());
+    }
+
+    @CacheEvict(value = "users", allEntries = true)
+    @Transactional
+    public void update(UserTo userTo) {
+        User user = get(userTo.id());
+        User updatedUser = UserUtil.updateFromTo(user, userTo);
+        repository.save(updatedUser);   // !! need only for JDBC implementation
     }
 }

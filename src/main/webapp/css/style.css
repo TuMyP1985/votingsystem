@@ -20,7 +20,7 @@ tr[data-meal-excess="false"] {
 }
 
 tr[data-meal-excess="true"] {
-    color: red;
+    color: mistyrose;
 }
 
 .fa {
