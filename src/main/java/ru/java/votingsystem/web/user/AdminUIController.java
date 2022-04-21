@@ -18,12 +18,6 @@ import java.util.stream.Collectors;
 public class AdminUIController extends AbstractUserController {
 
     @Override
-    @GetMapping
-    public List<User> getAll() {
-        return super.getAll();
-    }
-
-    @Override
     @GetMapping("/{id}")
     public User get(@PathVariable int id) {
         return super.get(id);

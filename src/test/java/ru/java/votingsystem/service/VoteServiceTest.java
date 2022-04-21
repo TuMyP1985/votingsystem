@@ -18,7 +18,7 @@ import static ru.java.votingsystem.model.AbstractBaseEntity.START_SEQ;
 public class VoteServiceTest extends AbstractServiceTest {
 
     public static final MatcherFactory.Matcher<Vote> VOTE_MATCHER = MatcherFactory.usingIgnoringFieldsComparator("registered", "user.registered");
-    public static final int VOTE_ID = START_SEQ+13;
+    public static final int VOTE_ID = START_SEQ+16;
     public static final Vote vote = new Vote(VOTE_ID,RestaurantTestData.restaurant,UserTestData.user);
 
     @Autowired

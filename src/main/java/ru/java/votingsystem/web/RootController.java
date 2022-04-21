@@ -7,15 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import ru.java.votingsystem.model.Dish;
 import ru.java.votingsystem.model.Restaurant;
-import ru.java.votingsystem.model.User;
 import ru.java.votingsystem.model.Vote;
+import ru.java.votingsystem.service.DishService;
 import ru.java.votingsystem.service.RestaurantService;
 import ru.java.votingsystem.service.UserService;
 import ru.java.votingsystem.service.VoteService;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 import static ru.java.votingsystem.util.ValidationUtil.canInputVote;
 
@@ -31,6 +33,9 @@ public class RootController {
 
     @Autowired
     private VoteService voteService;
+
+    @Autowired
+    private DishService dishService;
 
     @GetMapping("/")
     public String root() {
@@ -57,12 +62,61 @@ public class RootController {
     public String getRestaurant(Model model) {
         log.info("restaurants");
         int userId = SecurityUtil.authUserId();
-        model.addAttribute("canInputVote",canInputVote());
+        model.addAttribute("canInputVote", canInputVote());
         model.addAttribute("restaurants",
                 restaurantService.getAll());
         Vote vote = voteService.getWithUser(userId);
-        vote = vote==null?new Vote():vote;
-        model.addAttribute("vote",vote);
+        vote = vote == null ? new Vote() : vote;
+        model.addAttribute("vote", vote);
         return "restaurants";
+    }
+
+    @GetMapping("/restaurants/dishes")
+    public String dishes(HttpServletRequest request, Model model) {
+        int idRestaurant = getId(request);
+        setModelDishesRestaurant(model, null, idRestaurant);
+        return "dishes";
+    }
+
+    @GetMapping("/restaurants/voteSelect")
+    public String voteSelect(HttpServletRequest request) {
+
+        //Vote can be empty
+        int idVoteOld = 0;
+        if (!request.getParameter("idVote").isEmpty())
+            idVoteOld = getAnyId(request, "idVote");
+
+        if (idVoteOld!=0 && !canInputVote())
+            return "redirect:/restaurants";
+
+        int idRestaurant = getAnyId(request, "idRestaurant");
+        int userId = SecurityUtil.authUserId();
+        log.info("vote select, restaurant {}, for vote {}", idRestaurant, idVoteOld);
+        Vote vote = new Vote(restaurantService.get(idRestaurant));
+        voteService.selectRestaurant(vote, idVoteOld, userId);
+
+        return "redirect:/restaurants";
+
+    }
+
+    public void setModelDishesRestaurant(Model model, Restaurant restaurant, int idRestaurant) {
+        List<Dish> dishes = dishService.getAllToday(idRestaurant);
+        model.addAttribute("dishes", dishes);
+        if (restaurant == null)
+            if (dishes.size() > 0)
+                restaurant = dishes.get(0).getRestaurant();
+            else
+                restaurant = restaurantService.get(idRestaurant);
+        model.addAttribute("restaurant", restaurant);
+    }
+
+
+    private int getId(HttpServletRequest request) {
+        return getAnyId(request, "id");
+    }
+
+    private int getAnyId(HttpServletRequest request, String nameId) {
+        String paramId = Objects.requireNonNull(request.getParameter(nameId));
+        return Integer.parseInt(paramId);
     }
 }

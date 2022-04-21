@@ -1,24 +1,16 @@
-package ru.java.votingsystem.web.restaurant;
+package ru.java.votingsystem.web.restaurant_dish;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.java.votingsystem.model.Restaurant;
-import ru.java.votingsystem.model.Role;
-import ru.java.votingsystem.model.User;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/votingsys/restaurant", produces = MediaType.APPLICATION_JSON_VALUE)
-public class RestaurantUIController extends AbstractRestaurantController{
-
-    @Override
-    @GetMapping
-    public List<Restaurant> getAll() {
-        return super.getAll();
-    }
+public class RestaurantUIController extends AbstractRestaurantDishController {
 
     @Override
     @GetMapping("/{id}")

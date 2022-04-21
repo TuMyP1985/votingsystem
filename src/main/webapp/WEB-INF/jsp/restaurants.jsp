@@ -48,9 +48,6 @@
                     <td><a onclick=updateRow(${restaurant.id})><span class="fa fa-pencil"></span></a></td>
                     <td><a onclick="deleteRow(${restaurant.id})"><span class="fa fa-remove"></span></a></td>
                     <td><a href="restaurants/voteSelect?idRestaurant=${restaurant.id}&idVote=${vote.id}"><spring:message code="vote.name"/></a></td>
-<%--                    <td><a href="restaurants/update?id=${restaurant.id}"><spring:message code="common.update"/></a></td>--%>
-<%--                    <td><a class="delete"><span class="fa fa-remove"></span></a></td>--%>
-
                 </tr>
             </c:forEach>
         </table>

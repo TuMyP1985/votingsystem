@@ -1,12 +1,10 @@
-package ru.java.votingsystem.web.restaurant;
+package ru.java.votingsystem.web.restaurant_dish;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.Nullable;
 import ru.java.votingsystem.model.Dish;
 import ru.java.votingsystem.model.Restaurant;
-import ru.java.votingsystem.model.User;
 import ru.java.votingsystem.model.Vote;
 import ru.java.votingsystem.service.DishService;
 import ru.java.votingsystem.service.RestaurantService;
@@ -14,13 +12,11 @@ import ru.java.votingsystem.service.UserService;
 import ru.java.votingsystem.service.VoteService;
 import ru.java.votingsystem.web.SecurityUtil;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 import static ru.java.votingsystem.util.ValidationUtil.*;
 
-public abstract class AbstractRestaurantController {
+public abstract class AbstractRestaurantDishController {
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
