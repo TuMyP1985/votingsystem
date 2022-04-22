@@ -21,25 +21,22 @@
 
 
     <!-- HSQLDB  how to add bean-->
-    <!-- <beans profile="hsqldb">
-            <context:property-placeholder location="classpath:db/hsqldb.properties" system-properties-mode="OVERRIDE"/>
-        <bean id="dataSource"
-              class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-              p:driverClassName="org.hsqldb.jdbcDriver"
-              p:url="${database.url}"
-              p:username="${database.username}"
-              p:password="${database.password}"/>
-    </beans>-->
+<!--    <beans>-->
+<!--        <context:property-placeholder location="classpath:db/hsqldb.properties" system-properties-mode="OVERRIDE"/>-->
+<!--        <bean id="dataSource"-->
+<!--              class="org.springframework.jdbc.datasource.DriverManagerDataSource"-->
+<!--              p:driverClassName="org.hsqldb.jdbcDriver"-->
+<!--              p:url="jdbc:hsqldb:mem:vote"-->
+<!--              p:username="sa"-->
+<!--              p:password=""/>-->
+<!--    </beans>-->
 
     <!-- POSTGRES how to add bean It's been is only for me, not for Diplom. For experience-->
     <beans>
-
         <bean class="org.springframework.beans.factory.config.MethodInvokingBean">
             <property name="staticMethod" value="org.slf4j.bridge.SLF4JBridgeHandler.install"/>
         </bean>
-
         <context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>
-
         <bean id="dataSource"
               class="org.apache.tomcat.jdbc.pool.DataSource"
               p:driverClassName="org.postgresql.Driver"
@@ -47,6 +44,7 @@
               p:username="${database.username}"
               p:password="${database.password}"/>
     </beans>
+    <!--   -->
 
 
 
