@@ -5,7 +5,7 @@ const ctx = {
     ajaxUrl: userAjaxUrl,
     updateTable: function () {
         $.get(userAjaxUrl, updateTableByData);
-        location.reload();
+        // location.reload();
     }
 };
 
