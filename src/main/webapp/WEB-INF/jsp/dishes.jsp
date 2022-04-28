@@ -17,7 +17,7 @@
             <spring:message code="dish.title"/> (${restaurant.name})
         </h3>
 
-        <button class="btn btn-primary" onclick="add()">
+        <button visible-admin="${itIsAdmin}" class="btn btn-primary" onclick="add()">
             <span class="fa fa-plus"></span>
             <spring:message code="common.add"/>
         </button>
@@ -26,8 +26,8 @@
             <tr>
                 <th><spring:message code="dish.name"/></th>
                 <th><spring:message code="dish.price"/></th>
-                <th></th>
-                <th></th>
+                <th visible-admin="${itIsAdmin}"></th>
+                <th visible-admin="${itIsAdmin}"></th>
             </tr>
             </thead>
             <c:forEach items="${requestScope.dishes}" var="dish">
@@ -35,8 +35,8 @@
                 <tr id="${dish.id}">
                     <td><c:out value="${dish.name}"/></td>
                     <td><c:out value="${dish.price}"/></td>
-                    <td><a onclick=updateRow(${dish.id})><span class="fa fa-pencil"></span></a></td>
-                    <td><a onclick="deleteRow(${dish.id})"><span class="fa fa-remove"></span></a></td>
+                    <td visible-admin="${itIsAdmin}"><a onclick=updateRow(${dish.id})><span class="fa fa-pencil"></span></a></td>
+                    <td visible-admin="${itIsAdmin}"><a onclick="deleteRow(${dish.id})"><span class="fa fa-remove"></span></a></td>
                 </tr>
             </c:forEach>
         </table>
@@ -47,7 +47,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title"><spring:message code="dish.add"/></h4>
+                <h4 class="modal-title" id="modalTitle"></h4>
                 <button type="button" class="close" data-dismiss="modal" onclick="closeNoty()">&times;</button>
             </div>
             <div class="modal-body">
@@ -85,4 +85,8 @@
 </div>
 <jsp:include page="fragments/footer.jsp"/>
 </body>
+<script type="text/javascript">
+    i18n["addTitle"] = '<spring:message code="dish.add"/>';
+    i18n["editTitle"] = '<spring:message code="dish.edit"/>';
+</script>
 </html>

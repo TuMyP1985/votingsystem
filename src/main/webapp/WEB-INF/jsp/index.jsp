@@ -11,8 +11,9 @@
         <form method="post" action="users" class="form-inline">
             <label><spring:message code="app.login"/></label>
             <select name="userId" class="form-control mx-3">
-                <option value="100000" selected>User</option>
-                <option value="100001">Admin</option>
+                <option value="100000" selected>User1</option>
+                <option value="100001">User2</option>
+                <option value="100002">Admin</option>
             </select>
             <button type="submit" class="btn btn-primary"><spring:message code="common.select"/></button>
         </form>

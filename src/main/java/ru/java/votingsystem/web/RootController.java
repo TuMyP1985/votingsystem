@@ -7,13 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import ru.java.votingsystem.model.Dish;
-import ru.java.votingsystem.model.Restaurant;
-import ru.java.votingsystem.model.Vote;
+import ru.java.votingsystem.model.*;
 import ru.java.votingsystem.service.DishService;
 import ru.java.votingsystem.service.RestaurantService;
 import ru.java.votingsystem.service.UserService;
 import ru.java.votingsystem.service.VoteService;
+import ru.java.votingsystem.util.UserUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -63,18 +62,20 @@ public class RootController {
         log.info("restaurants");
         int userId = SecurityUtil.authUserId();
         model.addAttribute("canInputVote", canInputVote());
-        model.addAttribute("restaurants",
-                restaurantService.getAll());
+        model.addAttribute("restaurants", restaurantService.getAll());
+        model.addAttribute("itIsAdmin", userService.get(SecurityUtil.authUserId()).getRoles().contains(Role.ADMIN));
         Vote vote = voteService.getWithUser(userId);
         vote = vote == null ? new Vote() : vote;
         model.addAttribute("vote", vote);
         return "restaurants";
     }
 
+
     @GetMapping("/restaurants/dishes")
     public String dishes(HttpServletRequest request, Model model) {
         int idRestaurant = getId(request);
         setModelDishesRestaurant(model, null, idRestaurant);
+        model.addAttribute("itIsAdmin", userService.get(SecurityUtil.authUserId()).getRoles().contains(Role.ADMIN));
         return "dishes";
     }
 

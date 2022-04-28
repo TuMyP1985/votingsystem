@@ -25,7 +25,7 @@
 
         </h3>
 
-        <button class="btn btn-primary" onclick="add()">
+        <button visible-admin="${itIsAdmin}" class="btn btn-primary" onclick="add()">
             <span class="fa fa-plus"></span>
             <spring:message code="common.add"/>
         </button>
@@ -35,19 +35,26 @@
                 <th><spring:message code="restaurant.name"/></th>
                 <th></th>
                 <th></th>
-                <th></th>
-                <th></th>
+                <th visible-admin="${itIsAdmin}"></th>
+                <th visible-admin="${itIsAdmin}"></th>
             </tr>
             </thead>
             <c:forEach items="${requestScope.restaurants}" var="restaurant">
                 <jsp:useBean id="restaurant" type="ru.java.votingsystem.model.Restaurant"/>
-                <tr style="background-color:${restaurant.id == vote.restaurant.id ? 'mistyrose' : 'white'}" id="${restaurant.id}">
+                <tr id="${restaurant.id}">
+
                     <td><c:out value="${restaurant.name}"/></td>
 
                     <td><a href="restaurants/dishes?id=${restaurant.id}"><spring:message code="dish.title"/></a></td>
-                    <td><a onclick=updateRow(${restaurant.id})><span class="fa fa-pencil"></span></a></td>
-                    <td><a onclick="deleteRow(${restaurant.id})"><span class="fa fa-remove"></span></a></td>
-                    <td><a href="restaurants/voteSelect?idRestaurant=${restaurant.id}&idVote=${vote.id}"><spring:message code="vote.name"/></a></td>
+
+                    <td><a href="restaurants/voteSelect?idRestaurant=${restaurant.id}&idVote=${vote.id}"
+                            style="${restaurant.id == vote.restaurant.id ? 'color: red' : 'color:blue'}">
+                        <spring:message code="${restaurant.id == vote.restaurant.id ? 'vote.select' : 'vote.name'}"/>
+                    </a></td>
+
+
+                    <td visible-admin="${itIsAdmin}"><a onclick=updateRow(${restaurant.id})><span class="fa fa-pencil"></span></a></td>
+                    <td visible-admin="${itIsAdmin}"><a onclick="deleteRow(${restaurant.id})"><span class="fa fa-remove"></span></a></td>
                 </tr>
             </c:forEach>
         </table>
@@ -58,7 +65,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title"><spring:message code="restaurant.add"/></h4>
+                <h4 class="modal-title" id="modalTitle"></h4>
                 <button type="button" class="close" data-dismiss="modal" onclick="closeNoty()">&times;</button>
             </div>
             <div class="modal-body">
@@ -88,4 +95,8 @@
 </div>
 <jsp:include page="fragments/footer.jsp"/>
 </body>
+<script type="text/javascript">
+    i18n["addTitle"] = '<spring:message code="restaurant.add"/>';
+    i18n["editTitle"] = '<spring:message code="restaurant.edit"/>';
+</script>
 </html>

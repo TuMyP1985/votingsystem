@@ -28,17 +28,6 @@
                 <th></th>
             </tr>
             </thead>
-            <c:forEach items="${requestScope.users}" var="user">
-                <jsp:useBean id="user" type="ru.java.votingsystem.model.User"/>
-                <tr id="${user.id}">
-                    <td><c:out value="${user.name}"/></td>
-                    <td>${user.roles}</td>
-                    <td><input type="checkbox" <c:if test="${user.enabled}">checked</c:if>/></td>
-                    <td><fmt:formatDate value="${user.registered}" pattern="dd-MMMM-yyyy"/></td>
-                    <td><a onclick=updateRow(${user.id})><span class="fa fa-pencil"></span></a></td>
-                    <td><a onclick="deleteRow(${user.id})"><span class="fa fa-remove"></span></a></td>
-                </tr>
-            </c:forEach>
         </table>
     </div>
 </div>
@@ -47,7 +36,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title"><spring:message code="user.add"/></h4>
+                <h4 class="modal-title" id="modalTitle"></h4>
                 <button type="button" class="close" data-dismiss="modal" onclick="closeNoty()">&times;</button>
             </div>
             <div class="modal-body">
@@ -59,7 +48,6 @@
                         <input type="text" class="form-control" id="name" name="name"
                                placeholder="<spring:message code="user.name"/>">
                     </div>
-
 
                     <div class="form-group">
                         <label for="password" class="col-form-label"><spring:message code="user.password"/></label>
@@ -83,4 +71,8 @@
 </div>
 <jsp:include page="fragments/footer.jsp"/>
 </body>
+<script type="text/javascript">
+    i18n["addTitle"] = '<spring:message code="user.add"/>';
+    i18n["editTitle"] = '<spring:message code="user.edit"/>';
+</script>
 </html>

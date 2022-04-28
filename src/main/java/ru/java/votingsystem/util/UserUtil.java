@@ -2,11 +2,13 @@ package ru.java.votingsystem.util;
 
 import ru.java.votingsystem.model.Role;
 import ru.java.votingsystem.model.User;
+import ru.java.votingsystem.repository.user.DataJpaUserRepository;
+import ru.java.votingsystem.service.UserService;
 import ru.java.votingsystem.to.UserTo;
+import ru.java.votingsystem.web.SecurityUtil;
 
 public class UserUtil {
 
-    public static final int DEFAULT_CALORIES_PER_DAY = 2000;
 
     public static User createNewFromTo(UserTo userTo) {
         return new User(null, userTo.getName(), userTo.getPassword(), Role.USER);
