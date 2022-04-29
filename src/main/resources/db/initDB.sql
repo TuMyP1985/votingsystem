@@ -1,4 +1,4 @@
--- <!-- POSTGRES Please don't look. It's only for me, not for Diplom. For my experience))-->
+-- <!-- POSTGRES Please don't look it. It's only for my experience in future, not for Diplom.-->
 DROP TABLE IF EXISTS votes;
 DROP TABLE IF EXISTS dishs;
 DROP TABLE IF EXISTS restaurants;

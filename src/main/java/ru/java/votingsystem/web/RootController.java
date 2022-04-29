@@ -63,7 +63,7 @@ public class RootController {
         int userId = SecurityUtil.authUserId();
         model.addAttribute("canInputVote", canInputVote());
         model.addAttribute("restaurants", restaurantService.getAll());
-        model.addAttribute("itIsAdmin", userService.get(SecurityUtil.authUserId()).getRoles().contains(Role.ADMIN));
+        model.addAttribute("itIsAdmin", itIsAdmin());
         Vote vote = voteService.getWithUser(userId);
         vote = vote == null ? new Vote() : vote;
         model.addAttribute("vote", vote);
@@ -75,7 +75,7 @@ public class RootController {
     public String dishes(HttpServletRequest request, Model model) {
         int idRestaurant = getId(request);
         setModelDishesRestaurant(model, null, idRestaurant);
-        model.addAttribute("itIsAdmin", userService.get(SecurityUtil.authUserId()).getRoles().contains(Role.ADMIN));
+        model.addAttribute("itIsAdmin", itIsAdmin());
         return "dishes";
     }
 
@@ -119,5 +119,9 @@ public class RootController {
     private int getAnyId(HttpServletRequest request, String nameId) {
         String paramId = Objects.requireNonNull(request.getParameter(nameId));
         return Integer.parseInt(paramId);
+    }
+
+    private boolean itIsAdmin(){
+        return userService.get(SecurityUtil.authUserId()).getRoles().contains(Role.ADMIN);
     }
 }

@@ -325,7 +325,7 @@
             <version>2.3.4</version>
         </dependency>
 
-        <!--    postgresql  Please don't look. It's only for me, not for Diplom. For my experience))
+        <!--    postgresql  Please don't look it. It's only for my experience in future, not for Diplom.
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>

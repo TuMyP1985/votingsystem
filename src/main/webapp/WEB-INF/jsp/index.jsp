@@ -5,7 +5,9 @@
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
-<jsp:include page="fragments/bodyHeader.jsp"/>
+<%--<jsp:include page="fragments/bodyHeader.jsp"/>--%>
+<h2 style= background-color:#f5f5f5> <img src="resources/images/icon-restaurant.png"> <spring:message code="app.title"/></h2>
+
 <div class="jumbotron">
     <div class="container">
         <form method="post" action="users" class="form-inline">

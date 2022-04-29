@@ -11,7 +11,6 @@
 <script src="resources/js/votingsystem.restaurants.js" defer></script>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
-
 <jsp:useBean id="vote" type="ru.java.votingsystem.model.Vote" scope="request"/>
 <jsp:useBean id="canInputVote" type="java.lang.Boolean" scope="request"/>
 
