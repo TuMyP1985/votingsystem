@@ -21,9 +21,9 @@ Each restaurant provides a new menu each day.
 
 Description:
 
-If user have not role admin, then we hiddet button "Users", and he can't add/update Dishes/Restaurant.
+If user have no role admin, then we have hidden button "Users", and he can't add/update Dishes/Restaurant.
 
-User cannot vote again, if time is after 11:00, but can if he did't vote today.
+User cannot vote again, if time is after 11:00, but can if he didn't vote today.
 
 P.S.:
 In this project are any files not for diplom:
@@ -32,7 +32,7 @@ In this project are any files not for diplom:
 - spring-db.xml (beans for postgres), 
 - pom.xml (dependency for postgres).
 
-Please don't look it. It's only for my experience in future, not for Diplom.
+Please don't look it. It's only for my experience in the future, not for Diplom.
 
 
 
