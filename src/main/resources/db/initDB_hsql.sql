@@ -16,6 +16,8 @@ CREATE TABLE users
     registered       TIMESTAMP           DEFAULT now() NOT NULL,
     enabled          BOOLEAN                DEFAULT TRUE  NOT NULL
 );
+CREATE UNIQUE INDEX users_unique_name_idx
+    ON USERS (name);
 
 CREATE TABLE user_roles
 (
@@ -52,3 +54,5 @@ CREATE TABLE votes
 
 
 );
+CREATE UNIQUE INDEX votes_unique_user_restaurant_registered_idx
+    ON votes (registered, user_id, restaurant_id)
