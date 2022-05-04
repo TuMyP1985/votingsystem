@@ -5,10 +5,6 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-@NamedQueries({
-        @NamedQuery(name = Vote.DELETE, query = "DELETE FROM Vote u WHERE u.id=:id"),
-        @NamedQuery(name = Vote.ALL_SORTED, query = "SELECT u FROM Vote u ORDER BY u.id"),
-})
 @Entity
 @Table(name = "votes")
 public class Vote extends AbstractBaseEntity{

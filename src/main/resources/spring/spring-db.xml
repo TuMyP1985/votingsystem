@@ -31,22 +31,6 @@
               p:password="${database.password}"/>
     </beans>
 
-    <!-- POSTGRES Please don't look it. It's only for my experience in future, not for Diplom.
-    <beans>
-        <bean class="org.springframework.beans.factory.config.MethodInvokingBean">
-            <property name="staticMethod" value="org.slf4j.bridge.SLF4JBridgeHandler.install"/>
-        </bean>
-        <context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>
-        <bean id="dataSource"
-              class="org.apache.tomcat.jdbc.pool.DataSource"
-              p:driverClassName="org.postgresql.Driver"
-              p:url="${database.url}"
-              p:username="${database.username}"
-              p:password="${database.password}"/>
-    </beans>
-    -->
-
-
 
     <beans>
         <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
@@ -84,7 +68,7 @@
 
     </beans>
 
-   <beans>  <!-- profile="datajpa"-->
+   <beans>
         <context:component-scan base-package="ru.java.votingsystem.repository"/>
         <jpa:repositories base-package="ru.java.votingsystem.repository"/>
     </beans>

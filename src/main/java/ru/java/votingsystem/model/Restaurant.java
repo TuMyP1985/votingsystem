@@ -5,10 +5,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@NamedQueries({
-        @NamedQuery(name = Restaurant.DELETE, query = "DELETE FROM Restaurant u WHERE u.id=:id"),
-        @NamedQuery(name = Restaurant.ALL_SORTED, query = "SELECT u FROM Restaurant u ORDER BY u.id"),
-})
 @Entity
 @Table(name = "restaurants")
 public class Restaurant extends AbstractNamedEntity {

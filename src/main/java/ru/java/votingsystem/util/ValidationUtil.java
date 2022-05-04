@@ -47,7 +47,6 @@ public class ValidationUtil {
     }
 
     public static boolean canInputVote(){
-        return (LocalTime.now().getHour()<HOUR_BEFORE_INPUT_VOTE ||
-                LocalTime.now().getMinute()==0 && LocalTime.now().getHour()==HOUR_BEFORE_INPUT_VOTE);
+        return LocalTime.now().getHour()<HOUR_BEFORE_INPUT_VOTE;
     }
 }

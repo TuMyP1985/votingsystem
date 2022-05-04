@@ -7,10 +7,6 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-@NamedQueries({
-        @NamedQuery(name = Dish.DELETE, query = "DELETE FROM Dish u WHERE u.id=:id"),
-        @NamedQuery(name = Dish.ALL_SORTED, query = "SELECT u FROM Dish u ORDER BY u.id"),
-})
 @Entity
 @Table(name = "dishs")
 public class Dish extends AbstractNamedEntity{

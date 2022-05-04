@@ -9,10 +9,6 @@ import javax.validation.constraints.Size;
 import java.util.*;
 
 
-@NamedQueries({
-        @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
-        @NamedQuery(name = User.ALL_SORTED, query = "SELECT u FROM User u LEFT JOIN FETCH u.roles ORDER BY u.name, u.id"),
-})
 @Entity
 @Table(name = "users")
 public class User extends AbstractNamedEntity {

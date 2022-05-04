@@ -28,8 +28,6 @@
         <logback.version>1.2.10</logback.version>
         <slf4j.version>1.7.35</slf4j.version>
 
-        <!--DB-->
-        <postgresql.version>42.3.3</postgresql.version>
         <!--    Tests  -->
         <junit.version>4.13.2</junit.version>
         <assertj.version>3.22.0</assertj.version>
@@ -88,14 +86,7 @@
                         <containerId>tomcat9x</containerId>
                         <systemProperties>
                             <file.encoding>UTF-8</file.encoding>
-                            <spring.profiles.active>tomcat,datajpa</spring.profiles.active>
                         </systemProperties>
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.postgresql</groupId>
-                                <artifactId>postgresql</artifactId>
-                            </dependency>
-                        </dependencies>
                     </container>
                     <configuration>
                         <configfiles>
@@ -324,26 +315,6 @@
             <artifactId>hsqldb</artifactId>
             <version>2.3.4</version>
         </dependency>
-
-        <!--    postgresql  Please don't look it. It's only for my experience in future, not for Diplom.
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>${postgresql.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-jdbc</artifactId>
-            <version>${tomcat.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jul-to-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-        -->
 
     </dependencies>
 
