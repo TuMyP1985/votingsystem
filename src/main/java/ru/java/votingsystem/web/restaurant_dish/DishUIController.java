@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/votingsys/dish", produces = MediaType.APPLICATION_JSON_VALUE)
-public class DishUIController extends AbstractRestaurantDishController {
+public class DishUIController extends AbstractDishController {
 
     @Override
     @GetMapping("/{id}")

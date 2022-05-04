@@ -6,11 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.java.votingsystem.model.Restaurant;
 
-import java.util.List;
-
 @RestController
 @RequestMapping(value = "/votingsys/restaurant", produces = MediaType.APPLICATION_JSON_VALUE)
-public class RestaurantUIController extends AbstractRestaurantDishController {
+public class RestaurantUIController extends AbstractRestaurantController {
 
     @Override
     @GetMapping("/{id}")

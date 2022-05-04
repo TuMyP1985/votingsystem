@@ -1,14 +1,8 @@
 package ru.java.votingsystem.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
-import ru.java.votingsystem.model.Dish;
-import ru.java.votingsystem.model.Restaurant;
 import ru.java.votingsystem.model.Vote;
-import ru.java.votingsystem.repository.dish.DishRepository;
 import ru.java.votingsystem.repository.vote.VoteRepository;
-
-import java.util.List;
 
 import static ru.java.votingsystem.util.ValidationUtil.checkNotFoundWithId;
 

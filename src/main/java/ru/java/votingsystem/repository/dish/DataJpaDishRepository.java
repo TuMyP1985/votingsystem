@@ -13,7 +13,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Repository
-public class DataJpaDishRepository implements DishRepository {
+public class DataJpaDishRepository {
 
     private final CrudDishRepository crudRepository;
 
@@ -21,22 +21,18 @@ public class DataJpaDishRepository implements DishRepository {
         this.crudRepository = crudRepository;
     }
 
-    @Override
     public Dish save(Dish dish) {
         return crudRepository.save(dish);
     }
 
-    @Override
     public Dish get(int id) {
         return crudRepository.findById(id).orElse(null);
     }
 
-    @Override
     public boolean delete(int id) {
         return crudRepository.delete(id) != 0;
     }
 
-    @Override
     public List<Dish> getAllToday(int restaurantId) {
         LocalDate today = LocalDate.now();
         return crudRepository.getAllToday(restaurantId, today.atStartOfDay(), today.plus(1, ChronoUnit.DAYS).atStartOfDay());

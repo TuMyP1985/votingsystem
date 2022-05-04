@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.java.votingsystem.model.User;
-import ru.java.votingsystem.repository.user.UserRepository;
+import ru.java.votingsystem.repository.user.DataJpaUserRepository;
 import ru.java.votingsystem.to.UserTo;
 import ru.java.votingsystem.util.UserUtil;
 
@@ -16,9 +16,9 @@ import static ru.java.votingsystem.util.ValidationUtil.checkNotFoundWithId;
 @Service
 public class UserService {
 
-    private final UserRepository repository;
+    private final DataJpaUserRepository repository;
 
-    public UserService(UserRepository repository) {
+    public UserService(DataJpaUserRepository repository) {
         this.repository = repository;
     }
 

@@ -3,7 +3,7 @@ package ru.java.votingsystem.service;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.java.votingsystem.model.Restaurant;
-import ru.java.votingsystem.repository.restaurant.RestaurantRepository;
+import ru.java.votingsystem.repository.restaurant.DataJpaRestaurantRepository;
 
 import java.util.List;
 
@@ -12,9 +12,9 @@ import static ru.java.votingsystem.util.ValidationUtil.checkNotFoundWithId;
 @Service
 public class RestaurantService {
 
-    private final RestaurantRepository repository;
+    private final DataJpaRestaurantRepository repository;
 
-    public RestaurantService(RestaurantRepository repository) {
+    public RestaurantService(DataJpaRestaurantRepository repository) {
         this.repository = repository;
     }
 
