@@ -1,13 +1,10 @@
-package ru.java.votingsystem.web.restaurant_dish;
+package ru.java.votingsystem.web.restaurant;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.java.votingsystem.model.Restaurant;
-import ru.java.votingsystem.model.Vote;
 import ru.java.votingsystem.service.RestaurantService;
-import ru.java.votingsystem.service.VoteService;
-import ru.java.votingsystem.web.SecurityUtil;
 
 import java.util.List;
 

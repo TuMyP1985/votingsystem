@@ -1,4 +1,4 @@
-package ru.java.votingsystem.web.restaurant_dish;
+package ru.java.votingsystem.web.restaurant;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
