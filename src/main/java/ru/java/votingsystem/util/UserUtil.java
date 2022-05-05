@@ -14,6 +14,11 @@ public class UserUtil {
         return new User(null, userTo.getName(), userTo.getPassword(), Role.USER);
     }
 
+    public static UserTo asTo(User user) {
+        return new UserTo(user.getId(), user.getName(), user.getPassword());
+    }
+
+
     public static User updateFromTo(User user, UserTo userTo) {
         user.setName(userTo.getName());
         user.setPassword(userTo.getPassword());

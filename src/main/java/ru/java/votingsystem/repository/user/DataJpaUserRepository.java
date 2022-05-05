@@ -27,6 +27,10 @@ public class DataJpaUserRepository {
         return crudRepository.findById(id).orElse(null);
     }
 
+    public User getByName(String name) {
+        return crudRepository.getByName(name);
+    }
+
     public List<User> getAll() {
         return crudRepository.findAll();
     }

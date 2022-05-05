@@ -1,9 +1,15 @@
 package ru.java.votingsystem.service;
 
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import ru.java.votingsystem.AuthorizedUser;
 import ru.java.votingsystem.model.User;
 import ru.java.votingsystem.repository.user.DataJpaUserRepository;
 import ru.java.votingsystem.to.UserTo;
@@ -13,8 +19,9 @@ import java.util.List;
 
 import static ru.java.votingsystem.util.ValidationUtil.checkNotFoundWithId;
 
-@Service
-public class UserService {
+@Service("userService")
+@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
+public class UserService implements UserDetailsService {
 
     private final DataJpaUserRepository repository;
 
@@ -50,5 +57,15 @@ public class UserService {
         User user = get(userTo.id());
         User updatedUser = UserUtil.updateFromTo(user, userTo);
         repository.save(updatedUser);   // !! need only for JDBC implementation
+    }
+
+
+    @Override
+    public AuthorizedUser loadUserByUsername(String name) throws UsernameNotFoundException {
+        User user = repository.getByName(name);
+        if (user == null) {
+            throw new UsernameNotFoundException("User " + name + " is not found");
+        }
+        return new AuthorizedUser(user);
     }
 }
