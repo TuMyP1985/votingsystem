@@ -52,10 +52,10 @@
             <a href="http://www.webjars.org/">WebJars</a>,
             <a href="http://datatables.net/">DataTables</a>,
             <a href="http://ehcache.org">EHCACHE</a>,
-            <a href="http://www.postgresql.org/">PostgreSQL</a>,
+<%--            <a href="http://www.postgresql.org/">PostgreSQL</a>,--%>
             <a href="http://hsqldb.org/">HSQLDB</a>,
             <a href="https://junit.org/junit5/">JUnit 5</a>,
-            <a href="http://hamcrest.org/JavaHamcrest/">Hamcrest</a>,
+<%--            <a href="http://hamcrest.org/JavaHamcrest/">Hamcrest</a>,--%>
             <a href="https://assertj.github.io/doc/">AssertJ</a>,
             <a href="http://jquery.com/">jQuery</a>,
             <a href="https://plugins.jquery.com/">jQuery plugins</a>,
