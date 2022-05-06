@@ -8,6 +8,21 @@ const ctx = {
     }
 }
 
+function enable(chkbox, id) {
+    var enabled = chkbox.is(":checked");
+//  https://stackoverflow.com/a/22213543/548473
+    $.ajax({
+        url: userAjaxUrl + id,
+        type: "POST",
+        data: "enabled=" + enabled
+    }).done(function () {
+        chkbox.closest("tr").attr("data-user-enabled", enabled);
+        successNoty(enabled ? "common.enabled" : "common.disabled");
+    }).fail(function () {
+        $(chkbox).prop("checked", !enabled);
+    });
+}
+
 // $(document).ready(function () {
 $(function () {
     makeEditable(
@@ -26,7 +41,13 @@ $(function () {
                     "data": "roles"
                 },
                 {
-                    "data": "enabled"
+                    "data": "enabled",
+                    "render": function (data, type, row) {
+                        if (type === "display") {
+                            return "<input type='checkbox' " + (data ? "checked" : "") + " onclick='enable($(this)," + row.id + ");'/>";
+                        }
+                        return data;
+                    }
                 },
                 {
                     "data": "registered",
@@ -53,7 +74,13 @@ $(function () {
                     0,
                     "asc"
                 ]
-            ]
+            ],
+            "createdRow": function (row, data, dataIndex) {
+                if (!data.enabled) {
+                    $(row).attr("data-user-enabled", false);
+                }
+            }
+
         })
     );
 });

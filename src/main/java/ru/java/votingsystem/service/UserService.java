@@ -68,4 +68,12 @@ public class UserService implements UserDetailsService {
         }
         return new AuthorizedUser(user);
     }
+
+    @CacheEvict(value = "users", allEntries = true)
+    @Transactional
+    public void enable(int id, boolean enabled) {
+        User user = get(id);
+        user.setEnabled(enabled);
+        repository.save(user);  // !! need only for JDBC implementation
+    }
 }
