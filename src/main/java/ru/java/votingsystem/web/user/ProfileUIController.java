@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 import ru.java.votingsystem.to.UserTo;
 import ru.java.votingsystem.web.SecurityUtil;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
 
+@ApiIgnore
 @Controller
 @RequestMapping("/profile")
 public class ProfileUIController extends AbstractUserController {

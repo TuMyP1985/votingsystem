@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import ru.java.votingsystem.model.Role;
 import ru.java.votingsystem.model.User;
 import ru.java.votingsystem.to.UserTo;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@ApiIgnore
 @RestController
 @RequestMapping(value = "/admin/users", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdminUIController extends AbstractUserController {

@@ -14,6 +14,7 @@ import ru.java.votingsystem.service.RestaurantService;
 import ru.java.votingsystem.service.UserService;
 import ru.java.votingsystem.service.VoteService;
 import ru.java.votingsystem.util.UserUtil;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.Objects;
 
 import static ru.java.votingsystem.util.ValidationUtil.canInputVote;
 
+@ApiIgnore
 @Controller
 public class RootController {
     private static final Logger log = LoggerFactory.getLogger(RootController.class);
