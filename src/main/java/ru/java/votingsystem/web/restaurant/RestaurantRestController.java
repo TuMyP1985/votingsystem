@@ -5,12 +5,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.java.votingsystem.model.Restaurant;
-import springfox.documentation.annotations.ApiIgnore;
 
-@ApiIgnore
 @RestController
 @RequestMapping(value = "/votingsys/restaurant", produces = MediaType.APPLICATION_JSON_VALUE)
-public class RestaurantUIController extends AbstractRestaurantController {
+public class RestaurantRestController extends AbstractRestaurantController {
 
     @Override
     @GetMapping("/{id}")

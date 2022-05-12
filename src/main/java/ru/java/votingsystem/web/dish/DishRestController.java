@@ -7,10 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import ru.java.votingsystem.model.Dish;
 import springfox.documentation.annotations.ApiIgnore;
 
-@ApiIgnore
 @RestController
 @RequestMapping(value = "/votingsys/dish", produces = MediaType.APPLICATION_JSON_VALUE)
-public class DishUIController extends AbstractDishController {
+public class DishRestController extends AbstractDishController {
 
     @Override
     @GetMapping("/{id}")
