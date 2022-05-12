@@ -25,6 +25,8 @@ If user have no role admin, then we have hidden button "Users", and he can't add
 
 User cannot vote again, if time is after 11:00, but can if he didn't vote today.
 
+Swagger API:http://localhost:8080/votingsystem/swagger-ui.html
+
 
 
 
